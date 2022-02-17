@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1.0"
+      author: gretchen
+      changes:
+        - createTable:
+            tableName: projects
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar (50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: priority
+                  type: bigint
+              - column:
+                  name: start_date
+                  type: date
+              - column:
+                  name: completion_date
+                  type: date
+              - column:
+                  name: status
+                  type: varchar (50)
+
+        - createTable:
+            tableName: tasks
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar (50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: priority
+                  type: bigint
+              - column:
+                  name: description
+                  type: varchar (1000)
+              - column:
+                  name: project_id
+                  type: UUID
+                  constraints:
+                    foreignKeyName: FK_PROJECT_TASK
+                    references: projects (id)
+              - column:
+                  name: status
+                  type: varchar (50)
